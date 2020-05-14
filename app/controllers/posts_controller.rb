@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :owned_posts, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
   protect_from_forgery prepend: true
 
@@ -8,15 +9,17 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    @post = current_user.posts.build
   end
 
   def create
-    if (@post = Post.create(post_params))
+    @post = current_user.posts.build(post_params)
+
+    if @post.save
       flash[:success] = "Your post has been created!"
       redirect_to posts_path
     else
-      flash.now[:alert] = "Your new post couldn't be created!  Please check the form."
+      flash[:alert] = "Your new post couldn't be created!  Please check the form."
       render :new
     end
   end
@@ -52,4 +55,12 @@ class PostsController < ApplicationController
   def set_post
     @post = Post.find(params[:id])
   end
+
+  def owned_posts
+    unless current_user == @post.user
+      flash[:alert] = "Unwanted access requested"
+      redirect_to root_path
+    end
+  end
+
 end
