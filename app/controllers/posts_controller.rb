@@ -5,7 +5,11 @@ class PostsController < ApplicationController
   protect_from_forgery prepend: true
 
   def index
-    @posts = Post.all
+    @posts = Post.paginate(page: params[:page], per_page: 2).order('created_at DESC')
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new

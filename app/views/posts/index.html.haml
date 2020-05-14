@@ -1,2 +1,4 @@
--@posts.each do |post|
-  = render 'post', post: post
+#my-posts
+  = render @posts
+#infinite-scrolling
+  = will_paginate
