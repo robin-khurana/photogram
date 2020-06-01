@@ -53,7 +53,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'haml'
-gem "paperclip", "~> 4.2"
+gem "paperclip", "~> 5.2"
 gem 'simple_form', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'fog'
