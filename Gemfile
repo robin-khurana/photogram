@@ -56,6 +56,8 @@ gem 'haml'
 gem "paperclip", "~> 4.2"
 gem 'simple_form', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.3.5'
-gem 'jquery-ui-rails'
 gem 'fog'
-
+gem 'devise'
+gem 'jquery-rails'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
